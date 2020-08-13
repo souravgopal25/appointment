@@ -1,10 +1,10 @@
 package com.example.appointment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,29 +27,28 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn)
     Button btn;
-    @BindView(R.id.text)
-    TextView text;
     @BindView(R.id.btnNext)
     Button btnNext;
     List<Model> mlist;
     List<Model> mlistR;
-    private static final String TAG=MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
+    @BindView(R.id.next)
+    Button next;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mlist=new ArrayList<>();
-        for (int i = 0; i <5 ; i++) {
-            String name="ABC"+i;
-            Model model=new Model(Integer.toString(i),name);
+        mlist = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            String name = "ABC" + i;
+            Model model = new Model(Integer.toString(i), name);
             mlist.add(model);
 
         }
 
     }
-
-
 
 
     @OnClick({R.id.btn, R.id.btnNext})
@@ -66,15 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.btnNext:
-                FirebaseDatabase database1=FirebaseDatabase.getInstance();
-                DatabaseReference myRef1=database1.getReference("USER").child("Profile");
+                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                DatabaseReference myRef1 = database1.getReference("USER").child("Profile");
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
-                       mlistR=(List<Model>) dataSnapshot.getValue();
-                        Toast.makeText(MainActivity.this, "SIZE"+mlistR.size(), Toast.LENGTH_SHORT).show();
+                        mlistR = (List<Model>) dataSnapshot.getValue();
+                        Toast.makeText(MainActivity.this, "SIZE" + mlistR.size(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -88,5 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    @OnClick(R.id.next)
+    public void onViewClicked() {
+        Intent intent=new Intent(this,PaitentAppointmentRequestActivity.class);
+        startActivity(intent);
     }
 }
