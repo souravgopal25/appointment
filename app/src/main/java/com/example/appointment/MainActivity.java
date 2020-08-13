@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.next)
     Button next;
+    @BindView(R.id.doctorScreen)
+    Button doctorScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn, R.id.btnNext})
+    @OnClick({R.id.btn, R.id.btnNext,R.id.doctorScreen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn:
@@ -86,12 +88,19 @@ public class MainActivity extends AppCompatActivity {
 
 
                 break;
+            case R.id.doctorScreen:  Intent intent = new Intent(this, DoctorApprovalAppointment.class);
+                startActivity(intent);
+
+
+                break;
         }
     }
 
     @OnClick(R.id.next)
     public void onViewClicked() {
-        Intent intent=new Intent(this,PaitentAppointmentRequestActivity.class);
+        Intent intent = new Intent(this, PaitentAppointmentRequestActivity.class);
         startActivity(intent);
     }
+
+
 }
