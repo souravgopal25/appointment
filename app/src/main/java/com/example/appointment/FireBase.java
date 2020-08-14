@@ -17,7 +17,6 @@ import java.util.List;
 public class FireBase {
     private static   FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static  List<AppointmentRequest> mlist;
-
     public static boolean putAppointmentRequest(AppointmentRequest appointmentRequest){
         List<AppointmentRequest> list=new ArrayList<>();
         list.add(appointmentRequest);
@@ -25,11 +24,11 @@ public class FireBase {
         return myRef.push().setValue(appointmentRequest).isSuccessful();
 
     }
-    public static List<AppointmentRequest> getmList(String ID){
+    public static void getmList(String ID){
         mlist=new ArrayList<>();
         FirebaseDatabase database1 = FirebaseDatabase.getInstance();
         DatabaseReference myRef1 = database1.getReference("APPOINTMENT").child("2").child("Pending");
-        myRef1.addValueEventListener(new ValueEventListener() {
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()
@@ -47,7 +46,8 @@ public class FireBase {
 
             }
         });
-        return mlist;
+
+
 
     }
 }
