@@ -1,25 +1,19 @@
 package com.example.appointment;
 
 public class AppointmentRequest {
-    String name;
-    String DoctorId;
-    String dept;
-    String description;
+   String dept;
+   String description;
+   String doctorId;
+   String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public AppointmentRequest(String dept, String description, String doctorId, String name) {
+        this.dept = dept;
+        this.description = description;
+        this.doctorId = doctorId;
         this.name = name;
     }
 
-    public String getDoctorId() {
-        return DoctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        DoctorId = doctorId;
+    public AppointmentRequest() {
     }
 
     public String getDept() {
@@ -38,11 +32,19 @@ public class AppointmentRequest {
         this.description = description;
     }
 
-    public AppointmentRequest(String name, String doctorId, String dept, String description) {
-        this.name = name;
-        DoctorId = doctorId;
-        this.dept = dept;
-        this.description = description;
+    public String getDoctorId() {
+        return doctorId;
     }
 
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

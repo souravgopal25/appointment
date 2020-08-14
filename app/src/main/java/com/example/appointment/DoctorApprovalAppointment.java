@@ -29,12 +29,11 @@ public class DoctorApprovalAppointment extends AppCompatActivity implements Appo
         recycler.setLayoutManager(linearLayoutManager);
         recycler.setHasFixedSize(true);
         mlist=new ArrayList<>();
-        for (int i = 0; i <5; i++) {
-            AppointmentRequest appointmentRequest=new AppointmentRequest("SOURAV"+i,"1","sd","PROBLEM HEADACHE");
-            mlist.add(appointmentRequest);
-        }
-        appointmentAdapter=new AppointmentAdapter(this,mlist,this);
-        recycler.setAdapter(appointmentAdapter);
+
+        mlist=FireBase.getmList("1");
+
+        /*appointmentAdapter=new AppointmentAdapter(this,mlist,this);
+        recycler.setAdapter(appointmentAdapter);*/
 
 
 

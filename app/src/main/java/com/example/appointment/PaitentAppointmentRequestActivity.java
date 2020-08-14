@@ -34,12 +34,13 @@ public class PaitentAppointmentRequestActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn)
     public void onViewClicked() {
-        String mDr,mName,mDept,mProblem;
+       /* String mDr,mName,mDept,mProblem;
         mDr=dr.getText().toString();
         mName=name.getText().toString();
         mDept=dept.getText().toString();
-        mProblem=problem.getText().toString();
-        AppointmentRequest appointmentRequest=new AppointmentRequest(mName,mDr,mDept,mProblem);
+        mProblem=problem.getText().toString();*/
+      /*  AppointmentRequest appointmentRequest=new AppointmentRequest(mName,mDr,mDept,mProblem);*/
+        AppointmentRequest appointmentRequest=new AppointmentRequest("GEN","PAIN ","25","SHRESTHA");
         if (!FireBase.putAppointmentRequest(appointmentRequest)){
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         }else {
